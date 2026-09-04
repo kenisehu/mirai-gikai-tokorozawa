@@ -15,7 +15,7 @@ export function DesktopMenuLogo() {
       <div className="relative w-[116px] h-[98.38px]">
         <Image
           src="/img/logo.svg"
-          alt="みらい議会ロゴ"
+          alt="みらい議会＠所沢市ロゴ"
           fill
           className="object-contain"
           priority
@@ -41,7 +41,9 @@ export function DesktopMenuLogo() {
             lineHeight: "2em",
           }}
         >
-          国会の議論をわかりやすく
+          <span className="text-primary-accent">＠所沢市</span>
+          <br />
+          市議会の議論をわかりやすく
         </p>
       </div>
     </Link>
