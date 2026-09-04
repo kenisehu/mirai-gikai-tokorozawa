@@ -11,8 +11,8 @@ type FooterLinkItem = {
 
 const links: FooterLinkItem[] = [
   {
-    label: "チームみらいについて",
-    href: EXTERNAL_LINKS.TEAM_MIRAI_ABOUT,
+    label: "本家みらい議会",
+    href: EXTERNAL_LINKS.ORIGINAL_MIRAI_GIKAI,
     external: true,
   },
   {
@@ -24,11 +24,6 @@ const links: FooterLinkItem[] = [
     label: "プライバシーポリシー",
     href: routes.privacy(),
     external: false,
-  },
-  {
-    label: "よくあるご質問",
-    href: EXTERNAL_LINKS.FAQ,
-    external: true,
   },
   {
     label: "自主制作ガイドライン",
@@ -63,7 +58,7 @@ export function DesktopMenuLinks() {
           lineHeight: "1.48em",
         }}
       >
-        © 2025 Team Mirai
+        非公式・市民運営 © 2026
       </p>
     </div>
   );

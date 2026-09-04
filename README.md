@@ -1,5 +1,11 @@
 # みらい議会
 
+> **このリポジトリは「みらい議会＠所沢市」の開発版です。**
+> 市民が運営する独立した非公式プロジェクトであり、所沢市、所沢市議会、
+> 政党チームみらいが運営するものではありません。
+> [team-mirai/mirai-gikai](https://github.com/team-mirai/mirai-gikai) をもとに
+> 2026年9月4日から改変しています。
+
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/team-mirai-volunteer/mirai-gikai)
 [![codecov](https://codecov.io/gh/team-mirai/mirai-gikai/branch/develop/graph/badge.svg)](https://codecov.io/gh/team-mirai/mirai-gikai)
 
