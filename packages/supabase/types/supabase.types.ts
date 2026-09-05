@@ -289,6 +289,65 @@ export type Database = {
           },
         ]
       }
+      municipal_bill_metadata: {
+        Row: {
+          bill_document_url: string | null
+          bill_id: string
+          bill_number: string
+          created_at: string
+          deliberation_result: string | null
+          meeting_name: string
+          municipality_name: string
+          official_page_url: string
+          responsible_department: string | null
+          source_published_at: string | null
+          source_retrieved_at: string
+          submitting_body: string | null
+          supplementary_document_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          bill_document_url?: string | null
+          bill_id: string
+          bill_number: string
+          created_at?: string
+          deliberation_result?: string | null
+          meeting_name: string
+          municipality_name: string
+          official_page_url: string
+          responsible_department?: string | null
+          source_published_at?: string | null
+          source_retrieved_at?: string
+          submitting_body?: string | null
+          supplementary_document_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bill_document_url?: string | null
+          bill_id?: string
+          bill_number?: string
+          created_at?: string
+          deliberation_result?: string | null
+          meeting_name?: string
+          municipality_name?: string
+          official_page_url?: string
+          responsible_department?: string | null
+          source_published_at?: string | null
+          source_retrieved_at?: string
+          submitting_body?: string | null
+          supplementary_document_url?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "municipal_bill_metadata_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: true
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       diet_sessions: {
         Row: {
           created_at: string
