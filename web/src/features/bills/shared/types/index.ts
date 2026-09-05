@@ -12,6 +12,8 @@ export type BillContentUpdate =
   Database["public"]["Tables"]["bill_contents"]["Update"];
 
 export type MiraiStance = Database["public"]["Tables"]["mirai_stances"]["Row"];
+export type MunicipalBillMetadata =
+  Database["public"]["Tables"]["municipal_bill_metadata"]["Row"];
 
 // Enums
 export type HouseEnum = Database["public"]["Enums"]["house_enum"];
@@ -52,6 +54,7 @@ export type BillWithContent = Bill & {
   tags: BillTag[];
   featured_tag?: FeaturedTag;
   hasPublicInterview?: boolean;
+  municipal_metadata?: MunicipalBillMetadata;
   /** 公開レポート件数。一覧の回答数バッジと「声が集まっている順」に使う。 */
   publicReportCount?: number;
 };

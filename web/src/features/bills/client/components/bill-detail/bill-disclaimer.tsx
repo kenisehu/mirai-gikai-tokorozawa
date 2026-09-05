@@ -2,16 +2,28 @@ import { LinkButton } from "@/components/top/link-button";
 import { EXTERNAL_LINKS } from "@/config/external-links";
 import { ManualRuby } from "@/lib/rubyful/manual-ruby";
 
-export function BillDisclaimer() {
+export function BillDisclaimer({
+  isMunicipal = false,
+}: {
+  isMunicipal?: boolean;
+}) {
   return (
     <div className="space-y-6 pt-4 pb-10">
       {/* データの出典について */}
       <div className="space-y-3">
         <h3 className="text-sm font-bold text-black">掲載コンテンツについて</h3>
         <p className="text-xs leading-relaxed text-mirai-text-note">
-          掲載されている法案情報は、国会に提出された議案などの公開情報を基に、チームみらいがAIを活用しながら背景情報を整理したものです。掲載法案は主に、内閣提出法案（
-          <ManualRuby ruby="かくほう">閣法</ManualRuby>
-          ）を対象としております。
+          {isMunicipal ? (
+            <>
+              掲載されている議案情報は、所沢市が公開している一次資料を基に、本サイトが独自に整理したものです。本サイトは所沢市および所沢市議会の公式サイトではありません。
+            </>
+          ) : (
+            <>
+              掲載されている法案情報は、国会に提出された議案などの公開情報を基に、チームみらいがAIを活用しながら背景情報を整理したものです。掲載法案は主に、内閣提出法案（
+              <ManualRuby ruby="かくほう">閣法</ManualRuby>
+              ）を対象としております。
+            </>
+          )}
         </p>
       </div>
 

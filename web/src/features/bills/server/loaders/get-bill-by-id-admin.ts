@@ -3,6 +3,7 @@ import type { BillWithContent } from "../../shared/types";
 import {
   findBillById,
   findMiraiStanceByBillId,
+  findMunicipalMetadataByBillId,
   findTagsByBillId,
 } from "../repositories/bill-repository";
 import { getBillContentWithDifficulty } from "./helpers/get-bill-content";
@@ -19,12 +20,14 @@ export async function getBillByIdAdmin(
 
   // 基本的なbill情報、見解、コンテンツ、タグを並列取得
   // ステータスに関係なく取得（管理者用）
-  const [bill, miraiStance, billContent, billTags] = await Promise.all([
-    findBillById(id),
-    findMiraiStanceByBillId(id),
-    getBillContentWithDifficulty(id, difficultyLevel),
-    findTagsByBillId(id),
-  ]);
+  const [bill, miraiStance, billContent, billTags, municipalMetadata] =
+    await Promise.all([
+      findBillById(id),
+      findMiraiStanceByBillId(id),
+      getBillContentWithDifficulty(id, difficultyLevel),
+      findTagsByBillId(id),
+      findMunicipalMetadataByBillId(id),
+    ]);
 
   if (!bill) {
     console.error("Failed to fetch bill");
@@ -42,5 +45,6 @@ export async function getBillByIdAdmin(
     mirai_stance: miraiStance || undefined,
     bill_content: billContent || undefined,
     tags,
+    municipal_metadata: municipalMetadata || undefined,
   };
 }

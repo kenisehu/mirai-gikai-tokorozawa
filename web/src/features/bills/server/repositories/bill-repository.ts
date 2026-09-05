@@ -127,6 +127,20 @@ export async function findBillById(id: string) {
   return data;
 }
 
+export async function findMunicipalMetadataByBillId(billId: string) {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("municipal_bill_metadata")
+    .select("*")
+    .eq("bill_id", billId)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Failed to fetch municipal metadata: ${error.message}`);
+  }
+  return data;
+}
+
 /**
  * 議案のmirai_stanceを取得
  */

@@ -13,6 +13,8 @@ import type { BillWithContent } from "../../../shared/types";
 import { BillShareButtons } from "../share/bill-share-buttons";
 import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
+import { MunicipalBillSource } from "./municipal-bill-source";
+import { MunicipalBillStatus } from "./municipal-bill-status";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
@@ -53,14 +55,24 @@ export async function BillDetailLayout({
         <Container>
           {/* 議案ステータス進捗 */}
           <div className="my-8">
-            <BillStatusProgress
-              status={bill.status}
-              originatingHouse={bill.originating_house}
-              statusNote={bill.status_note}
-            />
+            {bill.municipal_metadata ? (
+              <MunicipalBillStatus
+                status={bill.status}
+                statusNote={bill.status_note}
+              />
+            ) : (
+              <BillStatusProgress
+                status={bill.status}
+                originatingHouse={bill.originating_house}
+                statusNote={bill.status_note}
+              />
+            )}
           </div>
 
           <BillContent bill={bill} />
+          {bill.municipal_metadata && (
+            <MunicipalBillSource metadata={bill.municipal_metadata} />
+          )}
         </Container>
       </BillDetailClient>
 
@@ -94,7 +106,7 @@ export async function BillDetailLayout({
 
         {/* データの出典と免責事項 */}
         <div className="my-8">
-          <BillDisclaimer />
+          <BillDisclaimer isMunicipal={Boolean(bill.municipal_metadata)} />
         </div>
       </Container>
     </div>
