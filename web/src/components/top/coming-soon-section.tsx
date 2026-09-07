@@ -14,10 +14,10 @@ export function ComingSoonSection({ bills }: ComingSoonSectionProps) {
       {/* ヘッダー */}
       <div className="flex flex-col gap-2">
         <h2 className="text-[22px] font-bold text-black leading-[1.48]">
-          これから掲載される法案
+          これから掲載される議案
         </h2>
         <p className="text-xs text-mirai-text-secondary">
-          みらい議会は、順次更新されていきます
+          所沢市の公式情報をもとに、わかりやすい解説を順次追加します
         </p>
       </div>
 
@@ -36,16 +36,16 @@ export function ComingSoonSection({ bills }: ComingSoonSectionProps) {
         </div>
       )}
 
-      {/* 国会議案情報へのリンク */}
+      {/* 所沢市の公式議案情報へのリンク */}
       <div className="text-right text-sm text-mirai-text-secondary">
         <Link
-          href="https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/menu.htm"
+          href="https://www.city.tokorozawa.saitama.jp/shiseijoho/shichougian/index.html"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:opacity-80 inline-flex items-center gap-1"
         >
-          国会に提出されているすべての法案は{" "}
-          <span className="underline">国会議案情報へ</span>
+          所沢市が公開している議案は{" "}
+          <span className="underline">市長提出議案のページへ</span>
           <ExternalLink className="h-3 w-3" />
         </Link>
       </div>
@@ -58,11 +58,12 @@ function ComingSoonBillCard({ bill }: { bill: ComingSoonBill }) {
   const displayTitle = bill.title || bill.name;
   // 正式名称（タイトルがある場合のみ別途表示）
   const officialName = bill.title ? bill.name : null;
+  const sourceUrl = bill.bill_document_url || bill.official_page_url;
 
   const content = (
     <Card
       className={`border border-black ${
-        bill.shugiin_url
+        sourceUrl
           ? "hover:bg-gray-50 transition-colors cursor-pointer"
           : ""
       }`}
@@ -76,18 +77,18 @@ function ComingSoonBillCard({ bill }: { bill: ComingSoonBill }) {
             <p className="text-xs text-mirai-text-subtle">{officialName}</p>
           )}
         </div>
-        {bill.shugiin_url && (
+        {sourceUrl && (
           <ExternalLink className="h-5 w-5 text-gray-400 flex-shrink-0" />
         )}
       </CardContent>
     </Card>
   );
 
-  // shugiin_url がある場合は外部リンク
-  if (bill.shugiin_url) {
+  // 公式資料がある場合は外部リンク
+  if (sourceUrl) {
     return (
       <Link
-        href={bill.shugiin_url as Route}
+        href={sourceUrl as Route}
         target="_blank"
         rel="noopener noreferrer"
         className="block"

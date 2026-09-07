@@ -30,6 +30,8 @@ export type ComingSoonBill = {
   title: string | null; // わかりやすいタイトル（bill_contentsから）
   originating_house: HouseEnum;
   shugiin_url: string | null;
+  official_page_url: string | null;
+  bill_document_url: string | null;
 };
 
 // Combined types for UI

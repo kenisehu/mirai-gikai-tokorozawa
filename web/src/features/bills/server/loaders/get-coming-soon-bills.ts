@@ -44,6 +44,9 @@ const _getCachedComingSoonBills = unstable_cache(
       // フォールバック: normalを優先、それもなければ任意のコンテンツ
       const fallbackContent =
         contents?.find((c) => c.difficulty_level === "normal") || contents?.[0];
+      const municipalMetadata = Array.isArray(bill.municipal_bill_metadata)
+        ? bill.municipal_bill_metadata[0]
+        : bill.municipal_bill_metadata;
 
       return {
         id: bill.id,
@@ -51,6 +54,8 @@ const _getCachedComingSoonBills = unstable_cache(
         title: preferredContent?.title || fallbackContent?.title || null,
         originating_house: bill.originating_house,
         shugiin_url: bill.shugiin_url,
+        official_page_url: municipalMetadata?.official_page_url ?? null,
+        bill_document_url: municipalMetadata?.bill_document_url ?? null,
       };
     });
   },

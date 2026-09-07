@@ -493,6 +493,10 @@ export async function findComingSoonBills(dietSessionId: string | null) {
       name,
       originating_house,
       shugiin_url,
+      municipal_bill_metadata (
+        official_page_url,
+        bill_document_url
+      ),
       bill_contents (
         title,
         difficulty_level
