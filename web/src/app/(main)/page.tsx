@@ -16,34 +16,25 @@ import type { BillWithContent } from "@/features/bills/shared/types";
 import { chatBillName } from "@/features/bills/shared/utils/chat-bill-name";
 import { countTagChipItems } from "@/features/bills/shared/utils/tag-chip-items";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
-import { CurrentDietSession } from "@/features/diet-sessions/client/components/current-diet-session";
-import { getCurrentDietSession } from "@/features/diet-sessions/server/loaders/get-current-diet-session";
-import { getLatestClosedDietSession } from "@/features/diet-sessions/server/loaders/get-latest-closed-diet-session";
-import { getJapanTime } from "@/lib/utils/date";
 
 /** カテゴリタブの「注目」から飛ばす先。 */
 const FEATURED_ANCHOR = "featured";
 
 export default async function Home() {
-  const japanTime = getJapanTime();
   // ゆくゆくタグ機能がマージされたらBFFに統合する
   const [
     { billsByTag, featuredBills, comingSoonBills, previousSessionData },
-    currentSession,
-    latestClosedSession,
     currentDifficulty,
     suggestableBills,
     featuredTags,
   ] = await Promise.all([
     loadHomeData(),
-    getCurrentDietSession(japanTime),
-    getLatestClosedDietSession(japanTime),
     getDifficultyLevel(),
     getSuggestableBills(),
     getFeaturedTags(),
   ]);
 
-  const inSession = currentSession !== null;
+  const inSession = false;
 
   // 注目に出した法案はタグ別から外す。同じカードが2回並ぶのを避ける。
   const featuredIds = new Set(
@@ -73,15 +64,8 @@ export default async function Home() {
 
   return (
     <>
-      {/* 本日の国会セクション */}
-      <CurrentDietSession
-        session={currentSession}
-        closedSession={latestClosedSession}
-        now={japanTime}
-      />
-
       <Container>
-        <div className="pt-4">
+        <div className="pt-24 md:pt-8">
           <CategoryTabs
             billsByTag={billsByTag}
             featuredAnchor={inSession ? FEATURED_ANCHOR : undefined}
@@ -139,7 +123,7 @@ export default async function Home() {
         <TeamMirai />
 
         {/* 免責事項 */}
-        <BillDisclaimer />
+        <BillDisclaimer isMunicipal />
       </Container>
 
       {/* チャット機能 */}
