@@ -29,8 +29,8 @@ export const BILL_STATUS_GROUP_LABELS: Record<BillStatusGroup, string> = {
  * status をタブのグループに畳む。
  *
  * 既存の `getCardStatusLabel` と同じ畳み方にする。あちらは `introduced` を
- * 「国会審議中」に含めるので、ここで「審議待ち」に落とすと、カードに
- * 「国会審議中」と出ている法案が「審議中」タブに現れない。
+ * 「市議会で審議中」に含めるので、ここで「審議待ち」に落とすと、カードに
+ * 「市議会で審議中」と出ている議案が「審議中」タブに現れない。
  *
  * 結果として「審議待ち」に残るのは `preparing`（提出前）だけになる。
  */

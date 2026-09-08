@@ -1,5 +1,4 @@
 import { Container } from "@/components/layouts/container";
-import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { InterviewLandingSection } from "@/features/interview-config/client/components/interview-landing-section";
 import { getInterviewConfig } from "@/features/interview-config/server/loaders/get-interview-config";
 import { getPublicReportsByBillId } from "@/features/interview-report/server/loaders/get-public-reports-by-bill-id";
@@ -18,12 +17,10 @@ import { MunicipalBillStatus } from "./municipal-bill-status";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
-  currentDifficulty: DifficultyLevelEnum;
 }
 
 export async function BillDetailLayout({
   bill,
-  currentDifficulty,
 }: BillDetailLayoutProps) {
   const showMiraiStance = bill.status === "preparing" || bill.mirai_stance;
   const [interviewConfig, publicReportsResult, topicAnalysis] =
@@ -35,17 +32,7 @@ export async function BillDetailLayout({
 
   return (
     <div className="container mx-auto pb-8 max-w-4xl">
-      {/*
-        テキスト選択機能とチャット連携の実装パターン:
-        - BillContentはServer Componentのまま保持（SSRによる高速な初期レンダリング）
-        - BillDetailClientでクライアントサイド機能（テキスト選択、チャット連携）を提供
-        - このパターンによりSSRを保持しつつインタラクティブ機能を実装
-      */}
-      <BillDetailClient
-        bill={bill}
-        currentDifficulty={currentDifficulty}
-        hasInterviewConfig={interviewConfig != null}
-      >
+      <BillDetailClient>
         <BillDetailHeader
           bill={bill}
           hasInterviewConfig={interviewConfig != null}

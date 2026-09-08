@@ -2,7 +2,6 @@ import { Container } from "@/components/layouts/container";
 import { About } from "@/components/top/about";
 import { ComingSoonSection } from "@/components/top/coming-soon-section";
 import { TeamMirai } from "@/components/top/team-mirai";
-import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
 import { BillSearchOverlay } from "@/features/bills/client/components/bill-search-overlay";
 import { BillsByTagSection } from "@/features/bills/server/components/bills-by-tag-section";
@@ -12,10 +11,7 @@ import { PreviousSessionSection } from "@/features/bills/server/components/previ
 import { getFeaturedTags } from "@/features/bills/server/loaders/get-featured-tags";
 import { getSuggestableBills } from "@/features/bills/server/loaders/get-suggestable-bills";
 import { loadHomeData } from "@/features/bills/server/loaders/load-home-data";
-import type { BillWithContent } from "@/features/bills/shared/types";
-import { chatBillName } from "@/features/bills/shared/utils/chat-bill-name";
 import { countTagChipItems } from "@/features/bills/shared/utils/tag-chip-items";
-import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 
 /** カテゴリタブの「注目」から飛ばす先。 */
 const FEATURED_ANCHOR = "featured";
@@ -24,12 +20,10 @@ export default async function Home() {
   // ゆくゆくタグ機能がマージされたらBFFに統合する
   const [
     { billsByTag, featuredBills, comingSoonBills, previousSessionData },
-    currentDifficulty,
     suggestableBills,
     featuredTags,
   ] = await Promise.all([
     loadHomeData(),
-    getDifficultyLevel(),
     getSuggestableBills(),
     getFeaturedTags(),
   ]);
@@ -52,15 +46,6 @@ export default async function Home() {
   // あちらも全会期を数えるため、押す前と後で数字が変わらない。
   // 候補用に取得済みの配列をそのまま使うので、集計のためのクエリは増えない。
   const searchTagChips = countTagChipItems(featuredTags, suggestableBills);
-
-  const toBillChatContext = (bill: BillWithContent) => {
-    return {
-      name: chatBillName(bill),
-      summary: bill.bill_content?.summary,
-      tags: bill.tags?.map((tag) => tag.label) || [],
-      isFeatured: featuredBills.some((b) => b.id === bill.id),
-    };
-  };
 
   return (
     <>
@@ -102,7 +87,7 @@ export default async function Home() {
         </div>
       </Container>
 
-      {/* 前回の国会セクション（Archive） */}
+      {/* 前回の市議会会議セクション（Archive） */}
       {previousSessionData && (
         <div className="bg-mirai-surface-muted py-10">
           <Container>
@@ -125,15 +110,6 @@ export default async function Home() {
         {/* 免責事項 */}
         <BillDisclaimer isMunicipal />
       </Container>
-
-      {/* チャット機能 */}
-      <HomeChatClient
-        currentDifficulty={currentDifficulty}
-        bills={billsByTag
-          .flatMap((x) => x.bills)
-          .concat(featuredBills)
-          .map(toBillChatContext)}
-      />
     </>
   );
 }
