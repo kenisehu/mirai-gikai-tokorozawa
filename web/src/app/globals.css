@@ -108,6 +108,8 @@
   /* Gradient endpoints */
   --color-mirai-gradient-start: #8cc9e8;
   --color-mirai-gradient-end: #b9d9b5;
+  --color-mirai-hero-start: #eaf4fa;
+  --color-mirai-hero-end: #eef4e8;
 
   /* Team Mirai brand (party design system) */
   --color-mirai-brand-teal: #30bca7;
@@ -259,6 +261,20 @@
     );
   }
 
+  .bg-mirai-hero-gradient {
+    background-image:
+      radial-gradient(
+        circle at 85% 20%,
+        rgb(255 255 255 / 80%),
+        transparent 28%
+      ),
+      linear-gradient(
+        135deg,
+        var(--color-mirai-hero-start),
+        var(--color-mirai-hero-end)
+      );
+  }
+
   .bg-mirai-light-gradient {
     background-image: linear-gradient(to bottom, #e2f6f3, #eef6e2);
   }
@@ -287,6 +303,10 @@
   .font-lexend {
     font-family: var(--font-lexend-giga), system-ui, sans-serif;
   }
+}
+
+html.large-text {
+  font-size: 112.5%;
 }
 
 /* カスタムアニメーション */

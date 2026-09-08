@@ -11,6 +11,11 @@ type FooterLinkItem = {
 
 const links: FooterLinkItem[] = [
   {
+    label: "よくある質問",
+    href: routes.faq(),
+    external: false,
+  },
+  {
     label: "本家みらい議会",
     href: EXTERNAL_LINKS.ORIGINAL_MIRAI_GIKAI,
     external: true,

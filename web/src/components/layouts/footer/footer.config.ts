@@ -23,6 +23,10 @@ export const primaryLinks: FooterLink[] = [
     href: routes.home(),
   },
   {
+    label: "よくある質問",
+    href: routes.faq(),
+  },
+  {
     label: "本家みらい議会",
     href: EXTERNAL_LINKS.ORIGINAL_MIRAI_GIKAI,
     external: true,

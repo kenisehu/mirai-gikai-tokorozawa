@@ -2,6 +2,7 @@ import { DesktopMenuDifficultyToggle } from "./difficulty-toggle";
 import { DesktopMenuLogo } from "./logo";
 import { DesktopMenuRubyToggle } from "./ruby-toggle";
 import { DesktopMenuSidebar } from "./sidebar";
+import { DesktopMenuTextSizeToggle } from "./text-size-toggle";
 
 /**
  * デスクトップメニュー (画面幅1400px以上で表示)
@@ -18,6 +19,7 @@ export async function DesktopMenu() {
       <DesktopMenuLogo />
       <DesktopMenuDifficultyToggle />
       <DesktopMenuRubyToggle />
+      <DesktopMenuTextSizeToggle />
       <DesktopMenuSidebar />
     </div>
   );

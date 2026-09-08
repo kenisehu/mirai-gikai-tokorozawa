@@ -1,6 +1,7 @@
 import { Container } from "@/components/layouts/container";
 import { About } from "@/components/top/about";
 import { ComingSoonSection } from "@/components/top/coming-soon-section";
+import { Hero } from "@/components/top/hero";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
 import { BillSearchOverlay } from "@/features/bills/client/components/bill-search-overlay";
@@ -49,18 +50,21 @@ export default async function Home() {
 
   return (
     <>
-      <Container>
-        <div className="pt-24 md:pt-8">
-          <CategoryTabs
-            billsByTag={billsByTag}
-            featuredAnchor={inSession ? FEATURED_ANCHOR : undefined}
-          />
-        </div>
-        {/* 検索の入口。キーワードとテーマの両方をモーダルに並べる */}
-        <div className="flex justify-end pt-2">
-          <BillSearchOverlay tags={searchTagChips} bills={suggestableBills} />
-        </div>
-      </Container>
+      <Hero billCount={suggestableBills.length} />
+      <section id="bills" className="scroll-mt-24">
+        <Container>
+          <div className="pt-10 md:pt-8">
+            <CategoryTabs
+              billsByTag={billsByTag}
+              featuredAnchor={inSession ? FEATURED_ANCHOR : undefined}
+            />
+          </div>
+          {/* 検索の入口。キーワードとテーマの両方をモーダルに並べる */}
+          <div className="flex justify-end pt-2">
+            <BillSearchOverlay tags={searchTagChips} bills={suggestableBills} />
+          </div>
+        </Container>
+      </section>
 
       {/* 議案一覧セクション */}
       <Container className="">

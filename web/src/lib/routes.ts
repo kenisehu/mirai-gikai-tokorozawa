@@ -11,6 +11,7 @@ export const routes = {
   home: () => "/" as const,
   terms: () => "/terms" as const,
   privacy: () => "/privacy" as const,
+  faq: () => "/faq" as const,
   developers: () => "/developers" as const,
   developersOpenDataApi: () => "/developers/open-data-api" as const,
   interviewDataTerms: () => "/developers/interview-data-terms" as const,

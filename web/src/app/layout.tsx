@@ -3,7 +3,9 @@ import type { Metadata, Viewport } from "next";
 import { Lexend_Giga, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import type { ReactNode } from "react";
+import { siteConfig } from "@/config/site.config";
 import { env } from "@/lib/env";
+import { TextSizeInitializer } from "@/lib/text-size/initializer";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -24,10 +26,6 @@ const notoSerifJP = Noto_Serif_JP({
   weight: ["500", "600"],
 });
 
-const siteTitle = "みらい議会＠所沢市";
-const siteDescription =
-  "所沢市議会で今どんな議案が検討されているか、わかりやすく伝える市民運営のプラットフォーム";
-const siteName = "みらい議会＠所沢市";
 const ogImage = {
   url: "/ogp-tokorozawa.png",
   width: 1200,
@@ -37,24 +35,24 @@ const ogImage = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.webUrl),
-  title: siteTitle,
-  description: siteDescription,
-  keywords: [siteName, "所沢市議会", "議案", "所沢市", "市政", "政策", "解説"],
+  title: siteConfig.siteName,
+  description: siteConfig.siteDescription,
+  keywords: [...siteConfig.keywords],
   icons: {
     icon: "/img/logo.svg",
     apple: "/img/logo.svg",
   },
   manifest: "/manifest.json",
   openGraph: {
-    title: siteTitle,
-    description: siteDescription,
+    title: siteConfig.siteName,
+    description: siteConfig.siteDescription,
     images: [ogImage],
-    siteName,
+    siteName: siteConfig.siteName,
   },
   twitter: {
     card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
+    title: siteConfig.siteName,
+    description: siteConfig.siteDescription,
     images: [ogImage.url],
   },
   robots: {
@@ -84,6 +82,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <TextSizeInitializer />
+      </head>
       <body
         className={`${notoSansJP.variable} ${lexendGiga.variable} ${notoSerifJP.variable} font-sans antialiased bg-mirai-surface-light`}
       >
