@@ -3,7 +3,7 @@
   "git": {
     "deploymentEnabled": {
       "main": false,
-      "develop": false
+      "develop": true
     }
   },
   "ignoreCommand": "node ../scripts/vercel-ignore-build.mjs"
