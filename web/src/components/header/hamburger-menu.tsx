@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu } from "lucide-react";
+import type { Route } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,9 +31,29 @@ export function HamburgerMenu() {
           <RubyToggle />
           <TextSizeToggle />
           <div className="border-t pt-3 text-sm">
-            <Link href={routes.faq()} className="font-medium hover:underline">
-              よくある質問
-            </Link>
+            <div className="flex flex-col gap-3">
+              <Link
+                href={routes.sessions() as Route}
+                className="font-medium hover:underline"
+              >
+                会議一覧
+              </Link>
+              <Link
+                href={routes.guide() as Route}
+                className="font-medium hover:underline"
+              >
+                議会の見かた
+              </Link>
+              <Link
+                href={routes.updates() as Route}
+                className="font-medium hover:underline"
+              >
+                更新履歴・情報源
+              </Link>
+              <Link href={routes.faq()} className="font-medium hover:underline">
+                よくある質問
+              </Link>
+            </div>
           </div>
         </div>
       </PopoverContent>

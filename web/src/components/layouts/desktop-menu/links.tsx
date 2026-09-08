@@ -11,6 +11,21 @@ type FooterLinkItem = {
 
 const links: FooterLinkItem[] = [
   {
+    label: "会議一覧",
+    href: routes.sessions(),
+    external: false,
+  },
+  {
+    label: "議会の見かた",
+    href: routes.guide(),
+    external: false,
+  },
+  {
+    label: "更新履歴・情報源",
+    href: routes.updates(),
+    external: false,
+  },
+  {
     label: "よくある質問",
     href: routes.faq(),
     external: false,

@@ -15,6 +15,7 @@ import { BillStatusBadge } from "../../../client/components/bill-list/bill-statu
 import { BillTag } from "../../../client/components/bill-list/bill-tag";
 import { getBillShareData } from "../../../client/utils/share";
 import type { BillWithContent } from "../../../shared/types";
+import { getCitizenHeadline } from "../../../shared/utils/citizen-headline";
 
 interface BillDetailHeaderProps {
   bill: BillWithContent;
@@ -31,7 +32,10 @@ export async function BillDetailHeader({
   opinionCount,
   topicCount,
 }: BillDetailHeaderProps) {
-  const displayTitle = bill.bill_content?.title;
+  const displayTitle = getCitizenHeadline(
+    bill.bill_content?.summary,
+    bill.bill_content?.title || bill.name
+  );
   const displaySummary = bill.bill_content?.summary;
 
   const { shareUrl, shareMessage, thumbnailUrl } = await getBillShareData(bill);
@@ -90,7 +94,7 @@ export async function BillDetailHeader({
         )}
 
         <p className="text-sm text-muted-foreground font-medium mb-4">
-          {bill.name}
+          正式名称：{bill.name}
         </p>
         {!bill.is_review_completed && (
           <div className="mb-4">

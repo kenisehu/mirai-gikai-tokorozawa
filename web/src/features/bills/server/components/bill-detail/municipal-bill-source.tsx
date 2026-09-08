@@ -1,4 +1,5 @@
 import { ExternalLink, FileText, Landmark } from "lucide-react";
+import { siteConfig } from "@/config/site.config";
 import type { MunicipalBillMetadata } from "../../../shared/types";
 
 interface MunicipalBillSourceProps {
@@ -31,6 +32,11 @@ export function MunicipalBillSource({ metadata }: MunicipalBillSourceProps) {
             <dd>{metadata.responsible_department}</dd>
           </>
         )}
+        <dt className="font-bold">審議状況</dt>
+        <dd>
+          {metadata.deliberation_result ||
+            "審議中（市長提出議案の結果は未公表）"}
+        </dd>
       </dl>
       <div className="mt-5 flex flex-wrap gap-3">
         <a
@@ -61,6 +67,15 @@ export function MunicipalBillSource({ metadata }: MunicipalBillSourceProps) {
           className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-primary-accent hover:opacity-80"
         >
           所沢市公式ページ
+          <ExternalLink className="size-3" aria-hidden="true" />
+        </a>
+        <a
+          href={siteConfig.currentMeeting.resultsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-2 py-2 text-sm font-bold text-primary-accent hover:opacity-80"
+        >
+          公式の審議結果
           <ExternalLink className="size-3" aria-hidden="true" />
         </a>
       </div>

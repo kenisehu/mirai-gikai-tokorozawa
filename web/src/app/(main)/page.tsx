@@ -1,6 +1,7 @@
 import { Container } from "@/components/layouts/container";
 import { About } from "@/components/top/about";
 import { ComingSoonSection } from "@/components/top/coming-soon-section";
+import { CurrentMeetingSection } from "@/components/top/current-meeting-section";
 import { Hero } from "@/components/top/hero";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
@@ -16,6 +17,9 @@ import { countTagChipItems } from "@/features/bills/shared/utils/tag-chip-items"
 
 /** カテゴリタブの「注目」から飛ばす先。 */
 const FEATURED_ANCHOR = "featured";
+
+// 会議の現在位置を日付に合わせて更新する。
+export const revalidate = 3600;
 
 export default async function Home() {
   // ゆくゆくタグ機能がマージされたらBFFに統合する
@@ -51,6 +55,7 @@ export default async function Home() {
   return (
     <>
       <Hero billCount={suggestableBills.length} />
+      <CurrentMeetingSection />
       <section id="bills" className="scroll-mt-24">
         <Container>
           <div className="pt-10 md:pt-8">

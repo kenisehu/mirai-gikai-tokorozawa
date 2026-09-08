@@ -3,6 +3,7 @@ import { RubySafeLineClamp } from "@/components/ruby-safe-line-clamp";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDateWithDots } from "@/lib/utils/date";
 import type { BillWithContent } from "../../../shared/types";
+import { getCitizenHeadline } from "../../../shared/utils/citizen-headline";
 import { ReviewCompleteBadge } from "../bill-detail/review-status-banner";
 import { BillStatusBadge } from "./bill-status-badge";
 import { BillTag } from "./bill-tag";
@@ -12,7 +13,10 @@ interface BillCardProps {
 }
 
 export function BillCard({ bill }: BillCardProps) {
-  const displayTitle = bill.bill_content?.title;
+  const displayTitle = getCitizenHeadline(
+    bill.bill_content?.summary,
+    bill.bill_content?.title || bill.name
+  );
   const summary = bill.bill_content?.summary;
 
   return (
@@ -55,6 +59,9 @@ export function BillCard({ bill }: BillCardProps) {
                   </>
                 )}
               </CardTitle>
+              <p className="text-xs font-medium text-mirai-text-subtle">
+                正式名称：{bill.name}
+              </p>
               <div className="flex flex-row gap-4">
                 <BillStatusBadge status={bill.status} className="w-fit" />
                 <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
