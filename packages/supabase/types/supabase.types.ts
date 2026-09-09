@@ -289,6 +289,53 @@ export type Database = {
           },
         ]
       }
+      correction_reports: {
+        Row: {
+          bill_id: string | null
+          bill_name: string
+          created_at: string
+          description: string
+          id: string
+          location: string | null
+          page_url: string
+          report_type: string
+          source_url: string | null
+          status: string
+        }
+        Insert: {
+          bill_id?: string | null
+          bill_name: string
+          created_at?: string
+          description: string
+          id?: string
+          location?: string | null
+          page_url: string
+          report_type: string
+          source_url?: string | null
+          status?: string
+        }
+        Update: {
+          bill_id?: string | null
+          bill_name?: string
+          created_at?: string
+          description?: string
+          id?: string
+          location?: string | null
+          page_url?: string
+          report_type?: string
+          source_url?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "correction_reports_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       municipal_bill_metadata: {
         Row: {
           bill_document_url: string | null

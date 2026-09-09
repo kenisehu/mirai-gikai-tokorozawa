@@ -15,6 +15,15 @@ export const routes = {
   sessions: () => "/sessions" as const,
   guide: () => "/guide" as const,
   updates: () => "/updates" as const,
+  corrections: (billId?: string, billName?: string) => {
+    const params = new URLSearchParams();
+    if (billId) params.set("billId", billId);
+    if (billName) params.set("billName", billName);
+    const query = params.toString();
+    return (query ? `/corrections?${query}` : "/corrections") as
+      | "/corrections"
+      | `/corrections?${string}`;
+  },
   developers: () => "/developers" as const,
   developersOpenDataApi: () => "/developers/open-data-api" as const,
   interviewDataTerms: () => "/developers/interview-data-terms" as const,

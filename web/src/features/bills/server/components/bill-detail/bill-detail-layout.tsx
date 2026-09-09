@@ -1,9 +1,14 @@
+import { MessageSquareWarning } from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
 import { Container } from "@/components/layouts/container";
+import { Button } from "@/components/ui/button";
 import { InterviewLandingSection } from "@/features/interview-config/client/components/interview-landing-section";
 import { getInterviewConfig } from "@/features/interview-config/server/loaders/get-interview-config";
 import { getPublicReportsByBillId } from "@/features/interview-report/server/loaders/get-public-reports-by-bill-id";
 import { BillTopicsPreviewSection } from "@/features/user-topic-analysis/server/components/bill-topics-preview-section";
 import { getPublicTopicAnalysis } from "@/features/user-topic-analysis/server/loaders/get-public-topic-analysis";
+import { routes } from "@/lib/routes";
 import { BillDetailClient } from "../../../client/components/bill-detail/bill-detail-client";
 import { BillDisclaimer } from "../../../client/components/bill-detail/bill-disclaimer";
 import { BillStatusProgress } from "../../../client/components/bill-detail/bill-status-progress";
@@ -19,9 +24,7 @@ interface BillDetailLayoutProps {
   bill: BillWithContent;
 }
 
-export async function BillDetailLayout({
-  bill,
-}: BillDetailLayoutProps) {
+export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
   const showMiraiStance = bill.status === "preparing" || bill.mirai_stance;
   const [interviewConfig, publicReportsResult, topicAnalysis] =
     await Promise.all([
@@ -94,6 +97,19 @@ export async function BillDetailLayout({
         {/* データの出典と免責事項 */}
         <div className="my-8">
           <BillDisclaimer isMunicipal={Boolean(bill.municipal_metadata)} />
+        </div>
+
+        <div className="my-8 rounded-2xl border bg-muted/30 p-5 text-center">
+          <p className="font-bold">誤りや分かりにくい点がありましたか？</p>
+          <p className="mt-1 mb-4 text-sm text-muted-foreground">
+            個人情報なしで、確認担当者へ知らせることができます。
+          </p>
+          <Button asChild variant="outline" size="sm">
+            <Link href={routes.corrections(bill.id, bill.name) as Route}>
+              <MessageSquareWarning />
+              訂正・改善を報告する
+            </Link>
+          </Button>
         </div>
       </Container>
     </div>
