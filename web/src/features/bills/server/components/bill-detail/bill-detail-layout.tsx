@@ -19,6 +19,7 @@ import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
 import { MunicipalBillSource } from "./municipal-bill-source";
 import { MunicipalBillStatus } from "./municipal-bill-status";
+import { MunicipalBudgetSummaryCard } from "./municipal-budget-summary-card";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
@@ -61,7 +62,16 @@ export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
 
           <BillContent bill={bill} />
           {bill.municipal_metadata && (
-            <MunicipalBillSource metadata={bill.municipal_metadata} />
+            <>
+              <MunicipalBudgetSummaryCard
+                billName={bill.name}
+                sourceUrl={
+                  bill.municipal_metadata.bill_document_url ??
+                  bill.municipal_metadata.official_page_url
+                }
+              />
+              <MunicipalBillSource metadata={bill.municipal_metadata} />
+            </>
           )}
         </Container>
       </BillDetailClient>
