@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { formatDateWithDots } from "@/lib/utils/date";
 import type { BillWithContent } from "../../../shared/types";
+import { getCitizenHeadline } from "../../../shared/utils/citizen-headline";
 import { ReviewCompleteBadge } from "../bill-detail/review-status-banner";
 import { BillStatusBadge } from "./bill-status-badge";
 
@@ -15,7 +16,10 @@ interface CompactBillCardProps {
  * 過去国会セクションや過去国会議案一覧ページで使用
  */
 export function CompactBillCard({ bill, className }: CompactBillCardProps) {
-  const displayTitle = bill.bill_content?.title || bill.name;
+  const displayTitle = getCitizenHeadline(
+    bill.bill_content?.summary,
+    bill.bill_content?.title || bill.name
+  );
   const statusLabel = bill.status === "enacted" ? "成立" : "提出";
 
   return (
