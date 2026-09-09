@@ -10,6 +10,15 @@ describe("getTokorozawaDeliberationSchedule", () => {
     expect(steps.at(-1)?.title).toBe("委員長報告・討論・採決");
   });
 
+  it("会議名の半角括弧と全角括弧を同じものとして扱う", () => {
+    expect(
+      getTokorozawaDeliberationSchedule(
+        "令和8年第5回(9月)定例会議",
+        "所沢市職員定数条例"
+      )
+    ).toHaveLength(4);
+  });
+
   it("決算案件は決算特別委員会の日程を表示する", () => {
     const steps = getTokorozawaDeliberationSchedule(
       "令和8年第5回（9月）定例会議",

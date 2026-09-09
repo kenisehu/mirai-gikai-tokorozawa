@@ -5,13 +5,17 @@ export type DeliberationStep = {
   status: "completed" | "scheduled";
 };
 
-const CURRENT_MEETING = "令和8年第5回（9月）定例会議";
+const CURRENT_MEETING = "令和8年第5回(9月)定例会議";
+
+function normalizeMeetingName(value: string): string {
+  return value.replaceAll("（", "(").replaceAll("）", ")");
+}
 
 export function getTokorozawaDeliberationSchedule(
   meetingName: string,
   billName: string
 ): DeliberationStep[] {
-  if (meetingName !== CURRENT_MEETING) return [];
+  if (normalizeMeetingName(meetingName) !== CURRENT_MEETING) return [];
 
   const isFinancialStatement = billName.includes("決算");
   return [
