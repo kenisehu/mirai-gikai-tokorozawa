@@ -15,7 +15,7 @@ export function getTokorozawaDeliberationSchedule(
   meetingName: string,
   billName: string
 ): DeliberationStep[] {
-  if (normalizeMeetingName(meetingName) !== CURRENT_MEETING) return [];
+  if (!normalizeMeetingName(meetingName).includes(CURRENT_MEETING)) return [];
 
   const isFinancialStatement = billName.includes("決算");
   return [

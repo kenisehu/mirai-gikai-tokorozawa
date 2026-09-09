@@ -19,6 +19,15 @@ describe("getTokorozawaDeliberationSchedule", () => {
     ).toHaveLength(4);
   });
 
+  it("公式データの末尾に説明が付いていても対象にする", () => {
+    expect(
+      getTokorozawaDeliberationSchedule(
+        "令和8年第5回(9月)定例会議市長提出議案",
+        "所沢市職員定数条例"
+      )
+    ).toHaveLength(4);
+  });
+
   it("決算案件は決算特別委員会の日程を表示する", () => {
     const steps = getTokorozawaDeliberationSchedule(
       "令和8年第5回（9月）定例会議",
