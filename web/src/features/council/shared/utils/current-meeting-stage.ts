@@ -30,10 +30,16 @@ export function getCurrentMeetingStage(date: Date): MeetingStage {
       description: "議案への質疑と、担当委員会への振り分けが行われます",
     };
   }
-  if (dateKey <= "2026-09-13") {
+  if (dateKey <= "2026-09-08") {
     return {
       label: "委員会審査",
       description: "各委員会で議案の内容を詳しく審査しています",
+    };
+  }
+  if (dateKey <= "2026-09-13") {
+    return {
+      label: "採決待ち",
+      description: "委員会審査を終え、9月14日の採決を待つ段階です",
     };
   }
   if (dateKey === "2026-09-14") {
