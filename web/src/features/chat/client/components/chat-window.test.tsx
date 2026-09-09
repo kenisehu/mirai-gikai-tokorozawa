@@ -181,7 +181,7 @@ describe("ChatWindow", () => {
       name: "モバイルAIチャット",
     });
     expect(dialog).toHaveStyle({ maxHeight: "640px" });
-    expect(screen.getAllByRole("button", { name: /何|法案/ })).toHaveLength(3);
+    expect(screen.getAllByRole("button", { name: /何|議案/ })).toHaveLength(3);
 
     await user.click(
       screen.getByRole("button", { name: "みらい議会って何？" })
@@ -244,7 +244,7 @@ describe("ChatWindow", () => {
 
     expect(
       await screen.findByRole("region", {
-        name: "国会や法案についてAIに質問する",
+        name: "所沢市議会や議案についてAIに質問する",
       })
     ).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();

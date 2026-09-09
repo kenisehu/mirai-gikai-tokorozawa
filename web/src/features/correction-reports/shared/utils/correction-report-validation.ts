@@ -4,9 +4,15 @@ const optionalHttpsUrl = z
   .string()
   .trim()
   .max(500, "URLは500文字以内で入力してください")
-  .refine((value) => !value || value.startsWith("https://"), {
-    message: "URLは https:// から始まるものを入力してください",
-  });
+  .refine(
+    (value) =>
+      !value ||
+      (z.string().url().safeParse(value).success &&
+        value.startsWith("https://")),
+    {
+      message: "URLは https:// から始まるものを入力してください",
+    }
+  );
 
 export const correctionReportSchema = z.object({
   billId: z.union([z.literal(""), z.string().uuid()]),

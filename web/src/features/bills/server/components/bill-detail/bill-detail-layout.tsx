@@ -14,6 +14,8 @@ import { BillDisclaimer } from "../../../client/components/bill-detail/bill-disc
 import { BillStatusProgress } from "../../../client/components/bill-detail/bill-status-progress";
 import { MiraiStanceCard } from "../../../client/components/bill-detail/mirai-stance-card";
 import type { BillWithContent } from "../../../shared/types";
+import { getMunicipalResultStatus } from "../../../shared/utils/municipal-result-status";
+import { findMunicipalDeliberationEvents } from "../../repositories/municipal-deliberation-repository";
 import { BillShareButtons } from "../share/bill-share-buttons";
 import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
@@ -27,6 +29,13 @@ interface BillDetailLayoutProps {
 }
 
 export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
+  const deliberation = bill.municipal_metadata
+    ? await findMunicipalDeliberationEvents(bill.id)
+    : null;
+  const voteResult = deliberation?.events
+    .filter((event) => event.event_type === "vote" && event.result)
+    .at(-1)?.result;
+  const municipalStatus = getMunicipalResultStatus(voteResult, bill.status);
   const showMiraiStance = bill.status === "preparing" || bill.mirai_stance;
   const [interviewConfig, publicReportsResult, topicAnalysis] =
     await Promise.all([
@@ -49,8 +58,8 @@ export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
           <div className="my-8">
             {bill.municipal_metadata ? (
               <MunicipalBillStatus
-                status={bill.status}
-                statusNote={bill.status_note}
+                status={municipalStatus}
+                statusNote={voteResult ?? bill.status_note}
               />
             ) : (
               <BillStatusProgress
@@ -72,6 +81,8 @@ export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
                 }
               />
               <MunicipalDeliberationTimeline
+                billId={bill.id}
+                billStatus={municipalStatus}
                 meetingName={bill.municipal_metadata.meeting_name}
                 billName={bill.name}
                 scheduleUrl="https://www.city.tokorozawa.saitama.jp/shigikai/kaiki_nittei/nitteir8_9.html"

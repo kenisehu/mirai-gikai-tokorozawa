@@ -5,10 +5,24 @@ import type { CorrectionReportInput } from "../../shared/utils/correction-report
 
 export async function createCorrectionReport(input: CorrectionReportInput) {
   const supabase = createAdminClient();
+  let billName = input.billName;
+  const pageUrl = input.billId
+    ? `https://mirai-gikai-tokorozawa.vercel.app/bills/${input.billId}`
+    : "https://mirai-gikai-tokorozawa.vercel.app/";
+  if (input.billId) {
+    const { data: bill, error: billError } = await supabase
+      .from("bills")
+      .select("name")
+      .eq("id", input.billId)
+      .eq("publish_status", "published")
+      .single();
+    if (billError || !bill) throw new Error("Published bill not found");
+    billName = bill.name;
+  }
   const { error } = await supabase.from("correction_reports").insert({
     bill_id: input.billId || null,
-    bill_name: input.billName,
-    page_url: input.pageUrl,
+    bill_name: billName,
+    page_url: pageUrl,
     report_type: input.reportType,
     location: input.location || null,
     description: input.description,

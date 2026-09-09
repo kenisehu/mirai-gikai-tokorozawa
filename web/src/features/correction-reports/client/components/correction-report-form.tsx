@@ -35,6 +35,9 @@ export function CorrectionReportForm({
       action={action}
       className="space-y-5 rounded-2xl border bg-white p-5 shadow-sm sm:p-7"
     >
+      <p className="text-sm text-muted-foreground">
+        迷惑送信防止のため、同じ回線からの送信は1分に1回・1時間に5回までです。回線情報は元の値を保存せず、制限確認用の識別値（ハッシュ）として一時的に扱います。
+      </p>
       <input type="hidden" name="billId" value={billId} />
       <input
         type="hidden"

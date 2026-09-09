@@ -24,7 +24,9 @@ describe("CompactBillCard", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: /給食を無償にする法案/ })
+      screen.getByRole("heading", {
+        name: /この法案は開発プレビュー用のサンプルデータです/,
+      })
     ).toBeInTheDocument();
   });
 

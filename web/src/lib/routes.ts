@@ -14,6 +14,8 @@ export const routes = {
   faq: () => "/faq" as const,
   sessions: () => "/sessions" as const,
   sessionArticle: (slug: string) => `/sessions/${slug}` as const,
+  archiveBill: (slug: string, billId: string) =>
+    `/sessions/${slug}/bills/${billId}` as const,
   guide: () => "/guide" as const,
   updates: () => "/updates" as const,
   corrections: (billId?: string, billName?: string) => {

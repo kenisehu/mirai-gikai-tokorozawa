@@ -63,9 +63,7 @@ function ComingSoonBillCard({ bill }: { bill: ComingSoonBill }) {
   const content = (
     <Card
       className={`border border-black ${
-        sourceUrl
-          ? "hover:bg-gray-50 transition-colors cursor-pointer"
-          : ""
+        sourceUrl ? "hover:bg-gray-50 transition-colors cursor-pointer" : ""
       }`}
     >
       <CardContent className="flex items-center justify-between py-4 px-5">

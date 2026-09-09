@@ -5,6 +5,14 @@ import {
 } from "./municipal-budget-summary";
 
 describe("getMunicipalBudgetSummary", () => {
+  it("狭山ケ丘は単年度予算ではなく継続費総額の変更と明示する", () => {
+    const summary = getMunicipalBudgetSummary(
+      "令和8年度所沢市所沢都市計画事業狭山ケ丘土地区画整理特別会計補正予算（第1号）"
+    );
+    expect(summary?.changeLabel).toBe("事業総額の増額");
+    expect(summary?.note).toContain("今年度だけの追加予算ではありません");
+    expect(summary?.note).toContain("2億7,500万円は変わりません");
+  });
   it("確認済みの補正予算5件だけを登録している", () => {
     expect(Object.keys(TOKOROZAWA_BUDGET_SUMMARIES)).toHaveLength(5);
   });

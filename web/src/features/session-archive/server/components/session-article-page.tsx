@@ -6,10 +6,12 @@ import { Container } from "@/components/layouts/container";
 import { Button } from "@/components/ui/button";
 import { routes } from "@/lib/routes";
 import { findTokorozawaSessionArticle } from "../../shared/tokorozawa-session-articles";
+import { getArchiveBills } from "../../shared/utils/archive-bills";
 
 export function SessionArticlePage({ slug }: { slug: string }) {
   const article = findTokorozawaSessionArticle(slug);
   if (!article) notFound();
+  const bills = getArchiveBills(slug);
 
   return (
     <Container>
@@ -59,6 +61,32 @@ export function SessionArticlePage({ slug }: { slug: string }) {
             ))}
           </ul>
         </section>
+        <section className="mt-10">
+          <h2 className="text-xl font-bold">
+            個別の議案・解説（{bills.length}件）
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            各項目から解説、付託先、採決結果、議案PDFを確認できます。同じ題名でも議案番号で区別しています。
+          </p>
+          <ul className="mt-4 space-y-3">
+            {bills.map((bill) => (
+              <li key={bill.id} className="rounded-xl border bg-white p-4">
+                <p className="text-sm text-muted-foreground">
+                  {bill.number}・{bill.result}
+                </p>
+                <Link
+                  href={routes.archiveBill(slug, bill.id) as Route}
+                  className="mt-1 block font-bold text-primary underline underline-offset-4"
+                >
+                  {bill.headline}
+                </Link>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {bill.title}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
         <section className="mt-10 rounded-2xl bg-muted/40 p-5">
           <h2 className="font-bold">一次資料で詳しく確認する</h2>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -95,7 +123,7 @@ export function SessionArticlePage({ slug }: { slug: string }) {
           </div>
         </section>
         <p className="mt-6 text-xs leading-6 text-muted-foreground">
-          件数・内訳・結果は所沢市議会および所沢市の公式発表に基づいています。個別議案の市民向け解説は、一次資料との照合が済んだものから追加します。
+          件数・内訳・結果は所沢市議会および所沢市の公式発表に基づいています。個別議案の解説は、公式の議案PDFと結果表を基に作成しています。
         </p>
       </main>
     </Container>

@@ -13,6 +13,12 @@ const validInput = {
 };
 
 describe("correctionReportSchema", () => {
+  it("httpsで始まっても壊れたURLは拒否する", () => {
+    expect(
+      correctionReportSchema.safeParse({ ...validInput, sourceUrl: "https://" })
+        .success
+    ).toBe(false);
+  });
   it("個人情報なしの有効な報告を受け付ける", () => {
     expect(correctionReportSchema.safeParse(validInput).success).toBe(true);
   });

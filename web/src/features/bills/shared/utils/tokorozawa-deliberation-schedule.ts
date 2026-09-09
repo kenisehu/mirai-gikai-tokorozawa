@@ -22,14 +22,16 @@ export function getTokorozawaDeliberationSchedule(
     {
       date: "9月1日",
       title: "本会議に提出",
-      description: "市長から提案理由と議案の説明が行われました。",
-      status: "completed",
+      description:
+        "議会全体の日程に記載された提案説明日です。個別議案の実施確認とは区別しています。",
+      status: "scheduled",
     },
     {
       date: "9月4日",
       title: "議案質疑・委員会付託",
-      description: "本会議で質疑を行い、詳しい審査を委員会へ託しました。",
-      status: "completed",
+      description:
+        "議会全体の議案質疑・委員会付託の日程です。議案ごとの付託先は公式記録で確認します。",
+      status: "scheduled",
     },
     isFinancialStatement
       ? {
@@ -41,8 +43,9 @@ export function getTokorozawaDeliberationSchedule(
       : {
           date: "9月7〜8日",
           title: "委員会審査",
-          description: "常任委員会・予算常任委員会などで審査されました。",
-          status: "completed",
+          description:
+            "議会全体の委員会審査の日程です。この議案の審査完了を示すものではありません。",
+          status: "scheduled",
         },
     ...(!isFinancialStatement
       ? [

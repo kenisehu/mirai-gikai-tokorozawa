@@ -286,7 +286,7 @@ export function ChatWindow({
   if (isPc) {
     return createPortal(
       <section
-        aria-label="国会や法案についてAIに質問する"
+        aria-label="所沢市議会や議案についてAIに質問する"
         className={`fixed inset-x-0 bottom-0 z-50 bg-white shadow-md rounded-t-2xl flex flex-col pc:h-[70vh] xl:right-[calc(calc(100%-1180px)/2)] ${CHAT_PANEL_RESPONSIVE_CLASSES}`}
       >
         {chatPanelContent}

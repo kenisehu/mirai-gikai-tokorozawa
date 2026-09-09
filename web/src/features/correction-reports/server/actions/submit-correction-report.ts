@@ -2,6 +2,7 @@
 
 import { correctionReportSchema } from "../../shared/utils/correction-report-validation";
 import { createCorrectionReport } from "../repositories/correction-report-repository";
+import { allowCorrectionReport } from "../services/correction-report-rate-limit";
 
 export type CorrectionReportState = {
   status: "idle" | "success" | "error";
@@ -31,6 +32,13 @@ export async function submitCorrectionReport(
   }
 
   try {
+    if (!(await allowCorrectionReport())) {
+      return {
+        status: "error",
+        message:
+          "送信が集中しているか、受付を一時的に利用できません。同じ回線からは1分に1回・1時間に5回までです。時間をおいてお試しください。",
+      };
+    }
     await createCorrectionReport(parsed.data);
     return { status: "success" };
   } catch {

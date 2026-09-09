@@ -4,8 +4,7 @@ import type { BillsListSearchParams } from "@/features/bills/shared/utils/parse-
 
 export const metadata: Metadata = {
   title: "議案を検索する | みらい議会＠所沢市",
-  description:
-    "所沢市議会に提出された議案を、審議状況やカテゴリから探せます。",
+  description: "所沢市議会に提出された議案を、審議状況やカテゴリから探せます。",
 };
 
 type Props = {

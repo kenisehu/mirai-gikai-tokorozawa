@@ -21,7 +21,9 @@ describe("BillCard", () => {
       />
     );
 
-    expect(screen.getByText("ガソリン税を安くする法案")).toBeInTheDocument();
+    expect(
+      screen.getByText("ガソリンにかかる税金を下げる法案です")
+    ).toBeInTheDocument();
     expect(
       screen.getByText("ガソリンにかかる税金を下げる法案です。")
     ).toBeInTheDocument();

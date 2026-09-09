@@ -2,6 +2,16 @@ import { describe, expect, it } from "vitest";
 import { getTokorozawaDeliberationSchedule } from "./tokorozawa-deliberation-schedule";
 
 describe("getTokorozawaDeliberationSchedule", () => {
+  it("公式日程だけで個別の審査完了を断定しない", () => {
+    const steps = getTokorozawaDeliberationSchedule(
+      "令和8年第5回（9月）定例会議",
+      "条例改正"
+    );
+    expect(steps.every((step) => step.status === "scheduled")).toBe(true);
+    expect(
+      steps.some((step) => step.description.includes("審査されました"))
+    ).toBe(false);
+  });
   it("通常議案は9月14日の採決予定まで表示する", () => {
     const steps = getTokorozawaDeliberationSchedule(
       "令和8年第5回（9月）定例会議",
