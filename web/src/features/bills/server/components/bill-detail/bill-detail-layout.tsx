@@ -20,6 +20,7 @@ import { BillDetailHeader } from "./bill-detail-header";
 import { MunicipalBillSource } from "./municipal-bill-source";
 import { MunicipalBillStatus } from "./municipal-bill-status";
 import { MunicipalBudgetSummaryCard } from "./municipal-budget-summary-card";
+import { MunicipalDeliberationTimeline } from "./municipal-deliberation-timeline";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
@@ -69,6 +70,11 @@ export async function BillDetailLayout({ bill }: BillDetailLayoutProps) {
                   bill.municipal_metadata.bill_document_url ??
                   bill.municipal_metadata.official_page_url
                 }
+              />
+              <MunicipalDeliberationTimeline
+                meetingName={bill.municipal_metadata.meeting_name}
+                billName={bill.name}
+                scheduleUrl="https://www.city.tokorozawa.saitama.jp/shigikai/kaiki_nittei/nitteir8_9.html"
               />
               <MunicipalBillSource metadata={bill.municipal_metadata} />
             </>

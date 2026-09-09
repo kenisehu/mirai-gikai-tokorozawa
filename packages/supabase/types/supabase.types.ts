@@ -395,6 +395,59 @@ export type Database = {
           },
         ]
       }
+      municipal_deliberation_events: {
+        Row: {
+          answer: string | null
+          bill_id: string
+          body_name: string | null
+          created_at: string
+          display_order: number
+          event_date: string | null
+          event_type: string
+          id: string
+          question: string | null
+          result: string | null
+          source_url: string
+          summary: string
+        }
+        Insert: {
+          answer?: string | null
+          bill_id: string
+          body_name?: string | null
+          created_at?: string
+          display_order?: number
+          event_date?: string | null
+          event_type: string
+          id?: string
+          question?: string | null
+          result?: string | null
+          source_url: string
+          summary: string
+        }
+        Update: {
+          answer?: string | null
+          bill_id?: string
+          body_name?: string | null
+          created_at?: string
+          display_order?: number
+          event_date?: string | null
+          event_type?: string
+          id?: string
+          question?: string | null
+          result?: string | null
+          source_url?: string
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "municipal_deliberation_events_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       diet_sessions: {
         Row: {
           created_at: string
