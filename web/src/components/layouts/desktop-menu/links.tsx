@@ -16,6 +16,11 @@ const links: FooterLinkItem[] = [
     external: false,
   },
   {
+    label: "一般質問",
+    href: routes.generalQuestions(),
+    external: false,
+  },
+  {
     label: "議会の見かた",
     href: routes.guide(),
     external: false,

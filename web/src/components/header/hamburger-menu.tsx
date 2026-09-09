@@ -45,6 +45,12 @@ export function HamburgerMenu() {
                 議会の見かた
               </Link>
               <Link
+                href={routes.generalQuestions() as Route}
+                className="font-medium hover:underline"
+              >
+                一般質問
+              </Link>
+              <Link
                 href={routes.updates() as Route}
                 className="font-medium hover:underline"
               >

@@ -1,4 +1,5 @@
 import { CalendarClock, Check, ExternalLink } from "lucide-react";
+import type { Route } from "next";
 import Link from "next/link";
 import { getTokorozawaDeliberationSchedule } from "../../../shared/utils/tokorozawa-deliberation-schedule";
 
@@ -46,7 +47,7 @@ export function MunicipalDeliberationTimeline({
         委員会での詳しい質疑・答弁は、公式記録の公開後に追記します。
       </div>
       <Link
-        href={scheduleUrl}
+        href={scheduleUrl as Route}
         target="_blank"
         rel="noreferrer"
         className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary underline underline-offset-4"

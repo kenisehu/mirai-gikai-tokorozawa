@@ -1,4 +1,5 @@
 import { ArrowUpRight, CirclePlus, Landmark } from "lucide-react";
+import type { Route } from "next";
 import Link from "next/link";
 import { getMunicipalBudgetSummary } from "../../../shared/utils/municipal-budget-summary";
 
@@ -35,7 +36,7 @@ export function MunicipalBudgetSummaryCard({
             {summary.note}
           </p>
           <Link
-            href={sourceUrl}
+            href={sourceUrl as Route}
             target="_blank"
             rel="noreferrer"
             className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-primary underline underline-offset-4"

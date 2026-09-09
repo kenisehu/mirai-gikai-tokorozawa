@@ -24,6 +24,7 @@ export const routes = {
       | "/corrections"
       | `/corrections?${string}`;
   },
+  generalQuestions: () => "/general-questions" as const,
   developers: () => "/developers" as const,
   developersOpenDataApi: () => "/developers/open-data-api" as const,
   interviewDataTerms: () => "/developers/interview-data-terms" as const,
