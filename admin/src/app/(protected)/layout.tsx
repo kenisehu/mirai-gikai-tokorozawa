@@ -1,4 +1,4 @@
-import { Home, User } from "lucide-react";
+import { ClipboardCheck, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { LogoutButton } from "@/features/auth/client/components/logout-button";
 import { getCurrentAdmin } from "@/features/auth/server/lib/auth-server";
@@ -19,11 +19,16 @@ export default async function MainLayout({
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <Home className="h-5 w-5 text-white" />
+                  <ClipboardCheck className="h-5 w-5 text-white" />
                 </div>
-                <h1 className="text-xl font-semibold text-gray-900">
-                  みらい議会 Admin
-                </h1>
+                <div>
+                  <h1 className="text-lg font-semibold text-gray-900 sm:text-xl">
+                    みらい議会＠所沢市 運営者ページ
+                  </h1>
+                  <p className="text-xs text-gray-500">
+                    市民による非公式プロジェクト
+                  </p>
+                </div>
               </div>
             </div>
 

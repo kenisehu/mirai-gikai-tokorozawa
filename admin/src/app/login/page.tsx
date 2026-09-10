@@ -8,10 +8,10 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
-            管理者ログイン
+            運営者ログイン
           </CardTitle>
           <p className="text-sm text-muted-foreground text-center">
-            みらい議会 Admin
+            みらい議会＠所沢市
           </p>
         </CardHeader>
         <CardContent>
@@ -20,8 +20,10 @@ export default function LoginPage() {
           </Suspense>
 
           <div className="mt-6 text-center">
-            <p className="text-xs text-muted-foreground">
-              © 2025 チームみらい. All rights reserved.
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              所沢市・所沢市議会・政党チームみらいの公式サービスではありません。
+              <br />
+              市民による独立した非公式プロジェクトです。
             </p>
           </div>
         </CardContent>

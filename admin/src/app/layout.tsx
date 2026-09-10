@@ -19,8 +19,13 @@ const isDev = process.env.NODE_ENV === "development";
 const isStaging = process.env.VERCEL_TARGET_ENV === "staging";
 
 export const metadata: Metadata = {
-  title: "みらい議会 Admin",
-  description: "みらい議会の管理者向けダッシュボード",
+  title: "みらい議会＠所沢市 運営者ページ",
+  description:
+    "市民による非公式プロジェクト「みらい議会＠所沢市」の運営者向けページ",
+  robots: {
+    index: false,
+    follow: false,
+  },
   icons: {
     icon: isDev
       ? "/icons/pwa/icon_dev_192_v3.png"
