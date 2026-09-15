@@ -63,7 +63,11 @@ export function BillCard({ bill }: BillCardProps) {
                 正式名称：{bill.name}
               </p>
               <div className="flex flex-row gap-4">
-                <BillStatusBadge status={bill.status} className="w-fit" />
+                <BillStatusBadge
+                  status={bill.status}
+                  statusNote={bill.status_note}
+                  className="w-fit"
+                />
                 <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
                   {bill.submitted_date && (
                     <time>{formatDateWithDots(bill.submitted_date)} 提出</time>

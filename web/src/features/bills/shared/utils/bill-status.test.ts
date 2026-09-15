@@ -2,6 +2,20 @@ import { describe, expect, it } from "vitest";
 import { getCardStatusLabel, getStatusVariant } from "./bill-status";
 
 describe("getCardStatusLabel", () => {
+  it("諮問の回答と決算審査を可決と混同しない", () => {
+    expect(
+      getCardStatusLabel("enacted", "諮問第2号：回答する（2026年9月14日）")
+    ).toBe("回答する");
+    expect(
+      getCardStatusLabel(
+        "in_originating_house",
+        "認定第1号：決算特別委員会に付託（最終結果未確認）"
+      )
+    ).toBe("決算審査中");
+    expect(getCardStatusLabel("introduced", "回答する予定")).toBe(
+      "市議会で審議中"
+    );
+  });
   it.each([
     ["introduced", "市議会で審議中"],
     ["in_originating_house", "市議会で審議中"],

@@ -33,9 +33,9 @@ export function MunicipalBillSource({ metadata }: MunicipalBillSourceProps) {
           </>
         )}
         <dt className="font-bold">審議状況</dt>
-        <dd>
+        <dd data-municipal-result={metadata.deliberation_result ?? ""}>
           {metadata.deliberation_result ||
-            "審議中（市長提出議案の結果は未公表）"}
+            "結果未確認（公式の審議結果をご確認ください）"}
         </dd>
       </dl>
       <div className="mt-5 flex flex-wrap gap-3">
@@ -80,7 +80,7 @@ export function MunicipalBillSource({ metadata }: MunicipalBillSourceProps) {
         </a>
       </div>
       <p className="mt-4 text-xs text-mirai-text-note">
-        出典確認日：{formatRetrievedDate(metadata.source_retrieved_at)}
+        議案資料の確認日：{formatRetrievedDate(metadata.source_retrieved_at)}
       </p>
     </section>
   );

@@ -14,6 +14,7 @@ import { getFeaturedTags } from "@/features/bills/server/loaders/get-featured-ta
 import { getSuggestableBills } from "@/features/bills/server/loaders/get-suggestable-bills";
 import { loadHomeData } from "@/features/bills/server/loaders/load-home-data";
 import { countTagChipItems } from "@/features/bills/shared/utils/tag-chip-items";
+import { SessionHighlights } from "@/features/council/server/components/session-highlights";
 
 /** カテゴリタブの「注目」から飛ばす先。 */
 const FEATURED_ANCHOR = "featured";
@@ -56,6 +57,7 @@ export default async function Home() {
     <>
       <Hero billCount={suggestableBills.length} />
       <CurrentMeetingSection />
+      <SessionHighlights />
       <section id="bills" className="scroll-mt-24">
         <Container>
           <div className="pt-10 md:pt-8">

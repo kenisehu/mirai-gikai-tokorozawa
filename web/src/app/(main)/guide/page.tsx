@@ -68,11 +68,24 @@ export default function GuidePage() {
           ))}
         </div>
         <LegalParagraph>
-          所沢市議会は通年会期制です。現在の9月定例会議では、9月7日・8日に委員会審査、14日に市長提出議案の採決が予定されています。
+          所沢市議会は通年会期制です。9月14日公表の審議結果では29議案が可決、2件の諮問は「回答する」となりました。決算認定10件は決算特別委員会に付託されており、最終結果とは区別します。
         </LegalParagraph>
       </section>
       <section className="space-y-4">
         <LegalSectionTitle>議案以外の公式情報</LegalSectionTitle>
+        <LegalParagraph>
+          採決結果が出た後も、発言を記録した正式な会議録の公開には時間がかかります。
+          所沢市の案内では、本会議の会議録は閉会後おおむね2か月後、録画映像は本会議終了後おおむね1週間後です。
+          質問の通告は「これから質問する内容」であり、市の答弁や実施の約束ではありません。
+          <Link
+            href="https://www.city.tokorozawa.saitama.jp/shigikai/jyoho/jouhounonyuusyuhouhou.html"
+            target="_blank"
+            rel="noreferrer"
+            className="text-primary-accent underline"
+          >
+            公開時期の公式案内
+          </Link>
+        </LegalParagraph>
         <div className="grid gap-3 sm:grid-cols-2">
           {officialLinks.map(([label, url]) => (
             <Link

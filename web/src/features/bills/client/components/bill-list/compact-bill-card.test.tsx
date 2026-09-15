@@ -66,7 +66,7 @@ describe("CompactBillCard", () => {
     ).toBeInTheDocument();
   });
 
-  it("成立済みの日付には「成立」を添える", () => {
+  it("可決後も提出日には「提出」を添える", () => {
     render(
       <CompactBillCard
         bill={createMockBill({
@@ -76,7 +76,7 @@ describe("CompactBillCard", () => {
       />
     );
 
-    expect(screen.getByText(DATE_LINE)).toHaveTextContent("2026.2.3 成立");
+    expect(screen.getByText(DATE_LINE)).toHaveTextContent("2026.2.3 提出");
   });
 
   it("成立していなければ「提出」を添える", () => {

@@ -31,10 +31,24 @@ export function CurrentMeetingSection() {
               {siteConfig.currentMeeting.scope}
             </p>
             <p className="mt-2 text-sm text-mirai-text-secondary">
-              {stage.description}。市長提出議案の採決は9月14日の予定です。
+              {stage.description}
+              。9月14日公表の結果では、29議案を可決し、2件の諮問に回答。決算認定10件は決算特別委員会に付託されています。
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
+            <Button asChild size="sm">
+              <Link
+                href={siteConfig.currentMeeting.resultsUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                9月14日の公式結果
+                <ExternalLink className="size-3" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="sm">
+              <Link href={routes.generalQuestions()}>一般質問を読む</Link>
+            </Button>
             <Button asChild variant="outline" size="sm">
               <Link
                 href={siteConfig.currentMeeting.scheduleUrl}
@@ -55,7 +69,7 @@ export function CurrentMeetingSection() {
           </div>
         </div>
         <p className="mt-4 text-xs text-mirai-text-note">
-          公式日程の確認日：2026年9月4日（予定は変更される場合があります）
+          審議結果の確認日：2026年9月15日／公式日程の確認日：2026年9月4日（予定は変更される場合があります）
         </p>
       </Container>
     </section>

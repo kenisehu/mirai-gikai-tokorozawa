@@ -1,12 +1,15 @@
 import { parseMarkdown } from "@/lib/markdown";
 import type { BillWithContent } from "../../../shared/types";
+import { getTokorozawaBudgetExplanation } from "../../../shared/utils/tokorozawa-budget-explanation";
 
 interface BillContentProps {
   bill: BillWithContent;
 }
 
 export async function BillContent({ bill }: BillContentProps) {
-  const markdownContent = bill.bill_content?.content;
+  const markdownContent =
+    getTokorozawaBudgetExplanation(bill.municipal_metadata) ??
+    bill.bill_content?.content;
 
   if (!markdownContent) {
     return null;

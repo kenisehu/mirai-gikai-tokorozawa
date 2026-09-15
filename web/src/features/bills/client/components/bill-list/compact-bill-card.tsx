@@ -20,7 +20,6 @@ export function CompactBillCard({ bill, className }: CompactBillCardProps) {
     bill.bill_content?.summary,
     bill.bill_content?.title || bill.name
   );
-  const statusLabel = bill.status === "enacted" ? "成立" : "提出";
 
   return (
     <Card
@@ -39,10 +38,14 @@ export function CompactBillCard({ bill, className }: CompactBillCardProps) {
             )}
           </h3>
           <div className="flex items-center gap-3">
-            <BillStatusBadge status={bill.status} className="w-fit" />
+            <BillStatusBadge
+              status={bill.status}
+              statusNote={bill.status_note}
+              className="w-fit"
+            />
             {bill.submitted_date && (
               <span className="text-xs text-muted-foreground">
-                {formatDateWithDots(bill.submitted_date)} {statusLabel}
+                {formatDateWithDots(bill.submitted_date)} 提出
               </span>
             )}
           </div>

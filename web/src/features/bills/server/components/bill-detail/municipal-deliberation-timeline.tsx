@@ -43,7 +43,12 @@ export async function MunicipalDeliberationTimeline({
       ) : (
         <ol className="mt-3 space-y-4">
           {events.map((event) => (
-            <li key={event.id} className="rounded-xl border p-4">
+            <li
+              key={event.id}
+              className="rounded-xl border p-4"
+              data-event-type={event.event_type}
+              data-event-date={event.event_date}
+            >
               <p className="text-sm text-muted-foreground">
                 {event.event_date} {event.body_name}
               </p>

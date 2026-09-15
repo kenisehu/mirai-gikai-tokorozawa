@@ -1,7 +1,17 @@
 import type { BillStatusEnum } from "../types";
 
 /** カード用の簡略化されたステータスラベルを取得 */
-export function getCardStatusLabel(status: BillStatusEnum): string {
+export function getCardStatusLabel(
+  status: BillStatusEnum,
+  statusNote?: string | null
+): string {
+  if (status === "enacted" && statusNote?.includes("回答する"))
+    return "回答する";
+  if (
+    status === "in_originating_house" &&
+    statusNote?.includes("決算特別委員会")
+  )
+    return "決算審査中";
   switch (status) {
     case "introduced":
     case "in_originating_house":

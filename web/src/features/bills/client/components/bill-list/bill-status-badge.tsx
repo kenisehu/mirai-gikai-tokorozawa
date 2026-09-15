@@ -7,13 +7,22 @@ import {
 
 interface BillStatusBadgeProps {
   status: BillStatusEnum;
+  statusNote?: string | null;
   className?: string;
 }
 
-export function BillStatusBadge({ status, className }: BillStatusBadgeProps) {
+export function BillStatusBadge({
+  status,
+  statusNote,
+  className,
+}: BillStatusBadgeProps) {
   return (
-    <Badge variant={getStatusVariant(status)} className={className}>
-      {getCardStatusLabel(status)}
+    <Badge
+      variant={getStatusVariant(status)}
+      className={className}
+      data-bill-status-label={getCardStatusLabel(status, statusNote)}
+    >
+      {getCardStatusLabel(status, statusNote)}
     </Badge>
   );
 }

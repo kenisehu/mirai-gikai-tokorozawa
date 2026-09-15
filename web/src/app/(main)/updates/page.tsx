@@ -14,6 +14,18 @@ export const metadata: Metadata = {
 
 const updates = [
   {
+    date: "2026年9月15日",
+    title: "5件の補正予算を詳しく解説・読む入口を整理",
+    detail:
+      "金額の内訳、今年度と複数年度の違い、市民生活との関係、まだ分からない点を市の説明資料で確認。トップから一般質問や過去会議も探しやすくしました。",
+  },
+  {
+    date: "2026年9月15日",
+    title: "9月14日の審議結果と決算審査を区別",
+    detail:
+      "公式の結果PDFに基づき、29議案の可決と2件の諮問への回答を反映。決算認定10件は特別委員会付託として表示します。",
+  },
+  {
     date: "2026年9月8日",
     title: "掲載範囲と審議状況を明確化",
     detail:
@@ -55,7 +67,9 @@ export default function UpdatesPage() {
           </Link>
           を確認しています。日程・審議結果・一般質問・委員会情報は、所沢市議会の公式サイトを確認しています。
         </LegalParagraph>
-        <p className="text-xs text-mirai-text-note">最新確認日：2026年9月8日</p>
+        <p className="text-xs text-mirai-text-note">
+          審議結果の最新確認日：2026年9月15日
+        </p>
       </section>
       <section className="space-y-5">
         <LegalSectionTitle>主な更新履歴</LegalSectionTitle>
